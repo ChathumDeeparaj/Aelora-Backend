@@ -8,6 +8,7 @@ import { z } from "zod";
 import { NotFoundError } from "../domain/errors/errors";
 
 
+
 export const getAllSolarUnits = async (
   req: Request,
   res: Response,
