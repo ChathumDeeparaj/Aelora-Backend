@@ -1,0 +1,8 @@
+version: "3"
+agent:
+    authtoken: 36gp9iT5Wi7KAnMTqSuO6DTUjst_BoXf6JLasCqcBQkZdkJr
+endpoints:
+  - name: back-end
+    url: https://emery-fizziest-gretta.ngrok-free.dev
+    upstream: 
+      url: http://localhost:8000
