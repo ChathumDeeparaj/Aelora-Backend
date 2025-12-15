@@ -34,6 +34,6 @@ server.use(globalErrorHandler);
 connectDB();
 
 const PORT = process.env.PORT || 8000;
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log("Server is listening on port: ", PORT);
 });
