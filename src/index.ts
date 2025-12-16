@@ -13,7 +13,7 @@ import weatherRouter from "./api/weather";
 import capacityFactorRouter from "./api/capacity-factor";
 
 const server = express();
-server.use(cors({ origin: process.env.FRONTEND_URL || "http://fed-4-front-end-chathum.netlify.app" }));
+server.use(cors({ origin: "http://localhost:5173" }));
 
 server.use(loggerMiddleware);
 
@@ -35,5 +35,5 @@ connectDB();
 
 const PORT = process.env.PORT || 8000;
 server.listen(PORT, () => {
-  console.log("Server is listening on port: ", PORT);
+  console.log(`Server is running on port ${PORT}`);
 });
