@@ -1,6 +1,6 @@
 version: "3"
 agent:
-    authtoken: 36gp9iT5Wi7KAnMTqSuO6DTUjst_BoXf6JLasCqcBQkZdkJr
+    authtoken: 371KXdGUrK6sgZD5qreG5pFnh0p_3LAy8S2rkAYaV9szNW5qL
 endpoints:
   - name: back-end
     url: https://emery-fizziest-gretta.ngrok-free.dev
