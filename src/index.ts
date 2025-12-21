@@ -24,7 +24,7 @@ connectDB();
 initializeScheduler();
 
 const server = express();
-server.use(cors({ origin: "http://localhost:5173" }));
+server.use(cors({ origin: "https://fed-4-front-end-manupa.netlify.app" }));
 
 server.use(loggerMiddleware);
 
@@ -61,5 +61,5 @@ server.use(globalErrorHandler);
 
 const PORT = process.env.PORT || 8000;
 server.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log("Server is listening on PORT: ", PORT);
 });
