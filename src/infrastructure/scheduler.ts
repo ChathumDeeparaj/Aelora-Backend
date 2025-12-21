@@ -3,8 +3,8 @@ import { syncEnergyGenerationRecords } from '../application/background/sync-ener
 import { generateInvoices } from '../application/background/generate-invoices';
 
 export const initializeScheduler = () => {
-  // Run daily at 00:00 (midnight) - cron expression: '0 0 * * *'
-  const schedule = process.env.SYNC_CRON_SCHEDULE || '0 0 * * *';
+  // Run every minute (for real-time demo)
+  const schedule = process.env.SYNC_CRON_SCHEDULE || '* * * * *';
 
   cron.schedule(schedule, async () => {
     console.log(`[${new Date().toISOString()}] Starting daily energy generation records sync...`);
