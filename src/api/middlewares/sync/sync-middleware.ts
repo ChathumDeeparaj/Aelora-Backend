@@ -21,9 +21,9 @@ export const DataAPIEnergyGenerationRecordDto = z.object({
  * Fetches latest records and merges new data with existing records
  */
 export const syncMiddleware = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
+    req: Request,
+    res: Response,
+    next: NextFunction
 ) => {
     try {
         const auth = getAuth(req);
@@ -31,15 +31,16 @@ export const syncMiddleware = async (
         if (!user) {
             throw new NotFoundError("User not found");
         }
-        
+
         const solarUnit = await SolarUnit.findOne({ userId: user._id });
         if (!solarUnit) {
             throw new NotFoundError("Solar unit not found");
         }
 
         // Fetch latest records from data API
+        const dataApiUrl = process.env.DATA_API_URL || "http://localhost:8001/api";
         const dataAPIResponse = await fetch(
-            `http://localhost:8001/api/energy-generation-records/solar-unit/${solarUnit.serialNumber}`
+            `${dataApiUrl}/energy-generation-records/solar-unit/${solarUnit.serialNumber}`
         );
         if (!dataAPIResponse.ok) {
             throw new Error("Failed to fetch energy generation records from data API");
