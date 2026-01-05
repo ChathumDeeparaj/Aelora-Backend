@@ -51,6 +51,19 @@ server.use("/api/admin", adminInvoiceRouter);
 server.use("/api/payments", paymentRouter);
 server.use("/api/anomalies", anomaliesRouter);
 
+// Debug Route for Data Cleanup in Production
+import { cleanupHighEnergyRecords } from "./cleanup_script";
+server.get("/api/debug/cleanup", async (req, res) => {
+  try {
+    console.log("Triggering manual cleanup...");
+    await cleanupHighEnergyRecords();
+    res.json({ message: "Cleanup completed successfully" });
+  } catch (error: any) {
+    console.error("Cleanup failed:", error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // Schedule Anomaly Detection: Run every hour
 cron.schedule("0 * * * *", () => {
   console.log("Running scheduled anomaly detection...");

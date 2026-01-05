@@ -42,9 +42,13 @@ const cleanupHighEnergyRecords = async () => {
     } catch (error) {
         console.error("Cleanup error:", error);
     } finally {
-        await mongoose.disconnect();
         console.log("Disconnected from MongoDB.");
     }
 };
 
-cleanupHighEnergyRecords();
+// Only run if called directly
+if (require.main === module) {
+    cleanupHighEnergyRecords();
+}
+
+export { cleanupHighEnergyRecords };
