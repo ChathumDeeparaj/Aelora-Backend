@@ -43,8 +43,12 @@ router.get("/", async (req, res) => {
     }
 
     // Call Data API to fetch weather data
-    const dataApiUrl = `${DATA_API_URL}/api/weather?latitude=${latitude}&longitude=${longitude}`;
-    
+    // Robustly handle whether /api is included or not in env var
+    const envDataApiUrl = DATA_API_URL;
+    const apiBase = envDataApiUrl.endsWith('/api') ? envDataApiUrl : `${envDataApiUrl}/api`;
+
+    const dataApiUrl = `${apiBase}/weather?latitude=${latitude}&longitude=${longitude}`;
+
     const response = await fetch(dataApiUrl);
     if (!response.ok) {
       throw new Error(`Data API error: ${response.statusText}`);
