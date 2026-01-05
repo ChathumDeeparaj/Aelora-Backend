@@ -64,6 +64,19 @@ server.get("/api/debug/cleanup", async (req, res) => {
   }
 });
 
+// Debug Route for Inspecting DB in Production
+import { User } from "./infrastructure/entities/User";
+import { SolarUnit } from "./infrastructure/entities/SolarUnit";
+server.get("/api/debug/inspect", async (req, res) => {
+  try {
+    const users = await User.find({});
+    const units = await SolarUnit.find({});
+    res.json({ users, units });
+  } catch (error: any) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // Schedule Anomaly Detection: Run every hour
 cron.schedule("0 * * * *", () => {
   console.log("Running scheduled anomaly detection...");
