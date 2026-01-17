@@ -98,8 +98,7 @@ export const handleStripeWebhook = async (req: Request, res: Response) => {
             await Invoice.findByIdAndUpdate(invoiceId, {
                 paymentStatus: "PAID",
                 paidAt: new Date(),
-            });
-            console.log("Invoice marked as PAID:", invoiceId);
+            })
         }
     }
 

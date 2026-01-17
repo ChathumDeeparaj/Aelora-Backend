@@ -29,6 +29,9 @@ export const getAllEnergyGenerationRecordsBySolarUnitId = async (
       if (!limit) {
         const energyGenerationRecords = await EnergyGenerationRecord.aggregate([
           {
+            $match: { solarUnitId: new mongoose.Types.ObjectId(id) },
+          },
+          {
             $group: {
               _id: {
                 date: {
@@ -47,6 +50,9 @@ export const getAllEnergyGenerationRecordsBySolarUnitId = async (
       }
 
       const energyGenerationRecords = await EnergyGenerationRecord.aggregate([
+        {
+          $match: { solarUnitId: new mongoose.Types.ObjectId(id) },
+        },
         {
           $group: {
             _id: {
